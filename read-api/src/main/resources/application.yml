@@ -1,0 +1,39 @@
+spring:
+    profiles:
+        active: dev
+
+# mybatis-plus 配置
+mybatis-plus:
+    mapper-locations: classpath*:mapper/**/*.xml
+    global-config:
+        db-config:
+            logic-delete-field: deleted
+            logic-delete-value: 1
+            logic-not-delete-value: 0
+
+jwt:
+    secret: yvant      # jwt 密钥
+    expiration: 604800 #JWT的超期限时间(60*60*24)
+
+security:
+    ignored:
+        urls:
+            - /swagger-ui.html
+            - /swagger-resources/**
+            - /swagger/**
+            - /**/v2/api-docs
+            - /**/*.js
+            - /**/*.css
+            - /**/*.png
+            - /**/*.ico
+            - /webjars/springfox-swagger-ui/**
+            - /actuator/**
+            - /druid/**
+            - /admin/login
+            - /admin/register
+            - /doc.html
+
+logging:
+    level:
+        root: info #日志配置DEBUG,INFO,WARN,ERROR
+        com.ybant: debug
