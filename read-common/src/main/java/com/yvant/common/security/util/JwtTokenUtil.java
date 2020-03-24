@@ -39,18 +39,13 @@ public class JwtTokenUtil {
 
     private static final String CLAIM_KEY_USERNAME = "sub";
     private static final String CLAIM_KEY_CREATED = "created";
-    private static final String TOKEN_HEAD = "Bearer";
 
-    /**
-     * 秘钥
-     */
     @Value("${jwt.secret}")
     private String secret;
-    /**
-     * 过期时间
-     */
     @Value("${jwt.expiration}")
     private Long expiration;
+    @Value("${jwt.tokenHead}")
+    private String tokenHead;
 
     /**
      * 根据用户信息生成token
@@ -97,7 +92,7 @@ public class JwtTokenUtil {
         if(StrUtil.isEmpty(oldToken)){
             return null;
         }
-        String token = oldToken.substring(TOKEN_HEAD.length());
+        String token = oldToken.substring(tokenHead.length());
         if(StrUtil.isEmpty(token)){
             return null;
         }

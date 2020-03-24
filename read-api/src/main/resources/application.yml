@@ -12,8 +12,10 @@ mybatis-plus:
             logic-not-delete-value: 0
 
 jwt:
-    secret: yvant      # jwt 密钥
-    expiration: 604800 #JWT的超期限时间(60*60*24)
+    tokenHeader: Authorization #JWT存储的请求头
+    secret: yvant-secret #JWT加解密使用的密钥
+    expiration: 604800 #JWT的超期限时间(60*60*24*7)
+    tokenHead: Bearer  #JWT负载中拿到开头
 
 security:
     ignored:
@@ -21,7 +23,6 @@ security:
             - /swagger-ui.html
             - /swagger-resources/**
             - /swagger/**
-            - /**/v2/api-docs
             - /**/*.js
             - /**/*.css
             - /**/*.png

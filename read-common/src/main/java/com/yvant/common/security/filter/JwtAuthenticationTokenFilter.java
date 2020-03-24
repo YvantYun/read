@@ -3,6 +3,7 @@ package com.yvant.common.security.filter;
 import com.yvant.common.security.util.JwtTokenUtil;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.beans.factory.annotation.Value;
 import org.springframework.security.authentication.UsernamePasswordAuthenticationToken;
 import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.security.core.userdetails.UserDetails;
@@ -33,15 +34,18 @@ public class JwtAuthenticationTokenFilter extends OncePerRequestFilter {
     @Autowired
     private JwtTokenUtil jwtTokenUtil;
 
-    private static final String TOKEN_HEAD = "Bearer";
+    @Value("${jwt.tokenHeader}")
+    private String tokenHeader;
+    @Value("${jwt.tokenHead}")
+    private String tokenHead;
 
     @Override
     protected void doFilterInternal(HttpServletRequest request,
                                     HttpServletResponse response,
                                     FilterChain filterChain) throws ServletException, IOException {
         String authHeader = request.getHeader("Authorization");
-        if(authHeader != null && authHeader.startsWith(TOKEN_HEAD)){
-            String authToken = authHeader.substring(TOKEN_HEAD.length());
+        if(authHeader != null && authHeader.startsWith(tokenHeader)){
+            String authToken = authHeader.substring(tokenHead.length());
             String username = jwtTokenUtil.getUsernameFromToken(authToken);
             log.info("check username is {}", username);
             if (username != null && SecurityContextHolder.getContext().getAuthentication() == null) {

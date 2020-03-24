@@ -21,7 +21,7 @@ import java.time.LocalDateTime;
 @Data
 @EqualsAndHashCode(callSuper = true)
 @Accessors(chain = true)
-@TableName("sys_admin")
+@TableName("t_sys_admin")
 public class Admin extends BaseEntity<Long> {
 
     private static final long serialVersionUID = 1L;

@@ -1,7 +1,7 @@
 package com.yvant.config;
 
 import com.yvant.common.security.config.SecurityConfig;
-import com.yvant.service.IAdminService;
+import com.yvant.service.admin.IAdminService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;

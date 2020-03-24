@@ -1,4 +1,4 @@
-package com.yvant.config;
+package com.yvant.config.mybatisplus;
 
 import com.baomidou.mybatisplus.core.handlers.MetaObjectHandler;
 import org.apache.ibatis.reflection.MetaObject;
