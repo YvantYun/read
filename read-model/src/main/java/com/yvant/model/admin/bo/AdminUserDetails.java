@@ -26,7 +26,7 @@ public class AdminUserDetails implements UserDetails {
     public Collection<? extends GrantedAuthority> getAuthorities() {
         //这个方法将返回此用户的所拥有的权限
         return resourceList.stream()
-                .map(role -> new SimpleGrantedAuthority(role.getId()+":"+role.getName()))
+                .map(resource -> new SimpleGrantedAuthority(resource.getId()+":"+resource.getName()))
                 .collect(Collectors.toList());
     }
 

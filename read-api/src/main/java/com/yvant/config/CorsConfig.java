@@ -24,21 +24,17 @@ public class CorsConfig {
 
     @Bean
     public CorsFilter corsFilter() {
-        // 1.添加cors配置信息
         CorsConfiguration config = new CorsConfiguration();
-        config.addAllowedOrigin("http://localhost:8090");;
-        // 2. 设置是否发送cookie信息
+        //允许所有域名进行跨域调用
+        config.addAllowedOrigin("*");
+        //允许跨越发送cookie
         config.setAllowCredentials(true);
-        // 3. 设置允许请求的方式
-        config.addAllowedMethod("*");
-        // 4. 设置允许的header
+        //放行全部原始头信息
         config.addAllowedHeader("*");
-
-        // 2. 为url添加映射路径
-        UrlBasedCorsConfigurationSource corsSource = new UrlBasedCorsConfigurationSource();
-        corsSource.registerCorsConfiguration("/**", config);
-
-        // 3.返回重新定义好的corsSource
-        return new CorsFilter(corsSource);
+        //允许所有请求方法跨域调用
+        config.addAllowedMethod("*");
+        UrlBasedCorsConfigurationSource source = new UrlBasedCorsConfigurationSource();
+        source.registerCorsConfiguration("/**", config);
+        return new CorsFilter(source);
     }
 }

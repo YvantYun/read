@@ -8,14 +8,14 @@ mybatis-plus:
     global-config:
         db-config:
             logic-delete-field: deleted
-            logic-delete-value: 1
-            logic-not-delete-value: 0
+            logic-delete-value: 1 # 逻辑已删除
+            logic-not-delete-value: 0 # 逻辑未删除
 
 jwt:
     tokenHeader: Authorization #JWT存储的请求头
     secret: yvant-secret #JWT加解密使用的密钥
     expiration: 604800 #JWT的超期限时间(60*60*24*7)
-    tokenHead: Bearer  #JWT负载中拿到开头
+    tokenHead: Bearer #JWT负载中拿到开头
 
 security:
     ignored:
@@ -23,6 +23,7 @@ security:
             - /swagger-ui.html
             - /swagger-resources/**
             - /swagger/**
+            - /**/v2/api-docs
             - /**/*.js
             - /**/*.css
             - /**/*.png

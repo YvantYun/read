@@ -1,10 +1,13 @@
 package com.yvant.model.admin;
 
+import com.baomidou.mybatisplus.annotation.TableName;
 import com.yvant.common.base.BaseEntity;
 import io.swagger.annotations.ApiModelProperty;
 import lombok.AllArgsConstructor;
 import lombok.Data;
+import lombok.EqualsAndHashCode;
 import lombok.NoArgsConstructor;
+import lombok.experimental.Accessors;
 
 /**
  * 后台资源表 实体类
@@ -13,8 +16,9 @@ import lombok.NoArgsConstructor;
  * @Description Created on 2020-03-24
  */
 @Data
-@NoArgsConstructor
-@AllArgsConstructor
+@EqualsAndHashCode(callSuper = true)
+@Accessors(chain = true)
+@TableName("t_sys_resource")
 public class Resource extends BaseEntity<Long> {
 
     /**

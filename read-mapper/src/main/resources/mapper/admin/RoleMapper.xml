@@ -3,4 +3,67 @@
 <mapper namespace="com.yvant.mapper.admin.RoleMapper">
 <!--当前表名：t_sys_role-->
 
+    <select id="getMenuListByAdminId" resultType="com.yvant.model.admin.entity.Menu">
+        SELECT
+            m.id id,
+            m.parent_id parentId,
+            m.create_time createTime,
+            m.title title,
+            m.LEVEL LEVEL,
+            m.sort sort,
+            m.NAME NAME,
+            m.icon icon,
+            m.hidden hidden
+        FROM
+            t_sys_admin_role_relation arr
+            LEFT JOIN t_sys_role r ON arr.role_id = r.id
+            LEFT JOIN t_sys_role_menu_relation rmr ON r.id = rmr.role_id
+            LEFT JOIN t_sys_menu m ON rmr.menu_id = m.id
+        WHERE
+            arr.admin_id = #{adminId}
+
+            AND m.id IS NOT NULL
+            AND m.deleted = 0
+        GROUP BY
+            m.id
+    </select>
+
+    <select id="getMenuListByRoleId" parameterType="java.lang.Long" resultType="com.yvant.model.admin.entity.Menu">
+        SELECT
+            m.id id,
+            m.parent_id parentId,
+            m.create_time createTime,
+            m.title title,
+            m.LEVEL level,
+            m.sort sort,
+            m.NAME name,
+            m.icon icon,
+            m.hidden hidden
+        FROM
+            t_sys_menu m
+            LEFT JOIN t_sys_role_menu_relation rmr ON m.id = rmr.menu_id
+        WHERE
+            m.deleted = 0
+            AND rmr.deleted = 0
+            AND role_id = #{roleId}
+        GROUP BY
+            m.id
+    </select>
+
+    <select id="getResourceListByRoleId" parameterType="java.lang.Long" resultType="com.yvant.model.admin.entity.Menu">
+        SELECT
+            r.id id,
+            r.create_time createTime,
+            r.`name` `name`,
+            r.url url,
+            r.description description,
+            r.category_id categoryId
+        FROM
+            t_sys_role_resource_relation rrr
+            LEFT JOIN t_sys_resource r ON rrr.resource_id = r.id
+        WHERE
+            rrr.role_id = #{roleId}
+            AND rrr.deleted = 0
+            AND r.deleted = 0
+    </select>
 </mapper>

@@ -43,12 +43,16 @@ public class JwtAuthenticationTokenFilter extends OncePerRequestFilter {
     protected void doFilterInternal(HttpServletRequest request,
                                     HttpServletResponse response,
                                     FilterChain filterChain) throws ServletException, IOException {
+        // 获取token
         String authHeader = request.getHeader("Authorization");
-        if(authHeader != null && authHeader.startsWith(tokenHeader)){
+        if(authHeader != null && authHeader.startsWith(tokenHead)){
+            //截取token中的Bearer开头
             String authToken = authHeader.substring(tokenHead.length());
+            // 从token中获取用户名
             String username = jwtTokenUtil.getUsernameFromToken(authToken);
             log.info("check username is {}", username);
             if (username != null && SecurityContextHolder.getContext().getAuthentication() == null) {
+                // 获取用户信息
                 UserDetails userDetails = this.userDetailsService.loadUserByUsername(username);
                 if(jwtTokenUtil.validateToken(authToken, userDetails)) {
                     UsernamePasswordAuthenticationToken authentication = new UsernamePasswordAuthenticationToken(userDetails, null, userDetails.getAuthorities());
