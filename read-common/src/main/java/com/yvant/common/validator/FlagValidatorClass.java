@@ -1,4 +1,4 @@
-package com.yvant.aspect.validator;
+package com.yvant.common.validator;
 
 import javax.validation.ConstraintValidator;
 import javax.validation.ConstraintValidatorContext;

@@ -39,3 +39,8 @@ logging:
     level:
         root: info #日志配置DEBUG,INFO,WARN,ERROR
         com.ybant: debug
+
+fdfs:
+    connect-timeout: 30000 # 连接超时时间
+    so-timeout: 30000      # 读取超时时间
+    tracker-list: 139.196.124.187:22122      # tracker所在的ip地址和端口号
