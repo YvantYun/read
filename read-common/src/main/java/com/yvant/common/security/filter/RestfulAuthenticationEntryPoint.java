@@ -12,7 +12,7 @@ import java.io.IOException;
 
 /**
  * <p>
- * 匿名登录下校验失败处理器
+ * 匿名登录下校验失败处理器-不加token或者token失效
  * </p>
  *
  * @author yunfeng
@@ -26,7 +26,7 @@ public class RestfulAuthenticationEntryPoint implements AuthenticationEntryPoint
                          AuthenticationException e) throws IOException, ServletException {
         response.setCharacterEncoding("UTF-8");
         response.setContentType("application/json");
-        response.getWriter().println(JSONUtil.parse(CommonResult.forbidden(e.getMessage())));
+        response.getWriter().println(JSONUtil.parse(CommonResult.unauthorized(e.getMessage())));
         response.getWriter().flush();
 
     }

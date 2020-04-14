@@ -14,6 +14,7 @@ import io.swagger.annotations.Api;
 import io.swagger.annotations.ApiOperation;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Value;
+import org.springframework.security.access.prepost.PreAuthorize;
 import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.annotation.*;
 
@@ -74,7 +75,7 @@ public class AdminController {
         String token = request.getHeader(tokenHeader);
         String refreshToken = adminService.refreshToken(token);
         if(refreshToken == null) {
-            return CommonResult.failed("token已过期");
+            return CommonResult.unauthorized("token已过期");
         }
         Map<String, String> tokenMap = new HashMap<>();
         tokenMap.put("token", refreshToken);

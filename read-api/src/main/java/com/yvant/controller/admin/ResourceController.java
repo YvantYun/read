@@ -3,6 +3,7 @@ package com.yvant.controller.admin;
 import com.baomidou.mybatisplus.core.metadata.IPage;
 import com.yvant.common.CommonPage;
 import com.yvant.common.CommonResult;
+import com.yvant.common.security.filter.DynamicSecurityMetadataSource;
 import com.yvant.model.admin.Resource;
 import com.yvant.service.admin.IResourceService;
 import io.swagger.annotations.Api;
@@ -30,6 +31,9 @@ public class ResourceController {
     @Autowired
     private IResourceService resourceService;
 
+    @Autowired
+    private DynamicSecurityMetadataSource dynamicSecurityMetadataSource;
+
     @ApiOperation("分页模糊查询后台资源")
     @GetMapping("/list")
     public CommonResult<CommonPage<Resource>> list(@RequestParam(required = false) Long categoryId,
@@ -54,6 +58,7 @@ public class ResourceController {
     @PostMapping("/create")
     public CommonResult create(@RequestBody Resource resource) {
         boolean result = resourceService.save(resource);
+        dynamicSecurityMetadataSource.clearDataSource();
         // 动态更新后台权限
         //dynamicSecurityMetadataSource.clearDataSource();
         if (result) {
@@ -69,6 +74,7 @@ public class ResourceController {
                                @RequestBody Resource resource) {
         resource.setId(id);
         boolean result = resourceService.updateById(resource);
+        dynamicSecurityMetadataSource.clearDataSource();
         if (result) {
             return CommonResult.success(result);
         } else {
@@ -87,7 +93,7 @@ public class ResourceController {
     @PostMapping("/delete/{id}")
     public CommonResult delete(@PathVariable Long id) {
         boolean result = resourceService.removeById(id);
-
+        dynamicSecurityMetadataSource.clearDataSource();
         if (result) {
             return CommonResult.success(result);
         } else {

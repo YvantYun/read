@@ -12,7 +12,7 @@ import java.io.IOException;
 
 /**
  * <p>
- * 校验失败处理器
+ * 校验失败处理器——访问无权限接口
  * </p>
  *
  * @author yunfeng
