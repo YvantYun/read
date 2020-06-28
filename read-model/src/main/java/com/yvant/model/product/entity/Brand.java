@@ -43,7 +43,7 @@ public class Brand extends BaseEntity<Long> {
 
 
     /**
-     * 
+     *
      */
     private Integer showStatus;
 

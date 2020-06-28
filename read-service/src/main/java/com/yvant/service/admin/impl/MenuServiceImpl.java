@@ -6,10 +6,12 @@ import com.baomidou.mybatisplus.core.metadata.IPage;
 import com.baomidou.mybatisplus.extension.plugins.pagination.Page;
 import com.baomidou.mybatisplus.extension.service.impl.ServiceImpl;
 import com.yvant.mapper.admin.MenuMapper;
+import com.yvant.model.admin.Role;
 import com.yvant.model.admin.bo.MenuNode;
 import com.yvant.model.admin.entity.Menu;
 import com.yvant.service.admin.IMenuService;
 import org.springframework.beans.BeanUtils;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
@@ -24,9 +26,10 @@ import java.util.stream.Collectors;
 @Service
 public class MenuServiceImpl extends ServiceImpl<MenuMapper, Menu> implements IMenuService {
 
+
     @Override
     public IPage<Menu> getMenuList(Long parentId, Integer pageSize, Integer pageNum) {
-        QueryWrapper<Menu> queryWrapper= new QueryWrapper<>();
+        QueryWrapper<Menu> queryWrapper = new QueryWrapper<>();
         queryWrapper.eq("parent_id", parentId).orderByAsc("sort");
         Page<Menu> page = new Page<>(pageNum, pageSize);
         return this.baseMapper.selectPage(page, queryWrapper);
@@ -64,8 +67,10 @@ public class MenuServiceImpl extends ServiceImpl<MenuMapper, Menu> implements IM
         return this.baseMapper.updateById(menu);
     }
 
+
     /**
      * 将menu转成menuList 并设置属性
+     *
      * @param menu
      * @param menuList
      * @return
@@ -84,9 +89,9 @@ public class MenuServiceImpl extends ServiceImpl<MenuMapper, Menu> implements IM
     }
 
     private void setMenuLevel(Menu menu) {
-        if(menu.getParentId() == 0) {
+        if (menu.getParentId() == 0) {
             menu.setLevel(0);
-        }else {
+        } else {
             menu.setLevel(1);
         }
     }

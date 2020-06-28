@@ -18,7 +18,7 @@ import javax.validation.constraints.NotEmpty;
 @Data
 public class BrandBO {
 
-    @ApiModelProperty(value = "品牌名称",required = true)
+    @ApiModelProperty(value = "品牌名称", required = true)
     @NotEmpty(message = "名称不能为空")
     private String name;
 
@@ -30,14 +30,14 @@ public class BrandBO {
     private Integer sort;
 
     @ApiModelProperty(value = "是否为厂家制造商")
-    @FlagValidator(value = {"0","1"}, message = "厂家状态不正确")
+    @FlagValidator(value = {"0", "1"}, message = "厂家状态不正确")
     private Integer factoryStatus;
 
     @ApiModelProperty(value = "是否进行显示")
-    @FlagValidator(value = {"0","1"}, message = "显示状态不正确")
+    @FlagValidator(value = {"0", "1"}, message = "显示状态不正确")
     private Integer showStatus;
 
-    @ApiModelProperty(value = "品牌logo",required = true)
+    @ApiModelProperty(value = "品牌logo", required = true)
     @NotEmpty(message = "品牌logo不能为空")
     private String logo;
 

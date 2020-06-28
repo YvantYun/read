@@ -2,6 +2,7 @@ package com.yvant.service.admin;
 
 import com.baomidou.mybatisplus.core.metadata.IPage;
 import com.baomidou.mybatisplus.extension.service.IService;
+import com.yvant.model.admin.Role;
 import com.yvant.model.admin.bo.MenuNode;
 import com.yvant.model.admin.entity.Menu;
 
@@ -17,6 +18,7 @@ public interface IMenuService extends IService<Menu> {
 
     /**
      * 获取菜单列表 分页
+     *
      * @param parentId
      * @param pageSize
      * @param pageNum
@@ -26,13 +28,13 @@ public interface IMenuService extends IService<Menu> {
 
     /**
      * 添加菜单菜单
+     *
      * @param menu
      * @return
      */
     int insertMenu(Menu menu);
 
     /**
-     *
      * @param id
      * @param menu
      * @return
@@ -41,15 +43,19 @@ public interface IMenuService extends IService<Menu> {
 
     /**
      * 获取树状菜单
+     *
      * @return
      */
     List<MenuNode> treeList();
 
     /**
      * 修改菜单是否显示
+     *
      * @param id
      * @param hidden
      * @return
      */
     int updateHidden(Long id, Integer hidden);
+
+
 }

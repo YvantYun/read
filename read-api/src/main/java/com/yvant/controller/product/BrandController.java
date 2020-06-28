@@ -42,7 +42,7 @@ public class BrandController {
     @ResponseBody
     public CommonResult create(@Validated @RequestBody BrandBO brandBO, BindingResult result) {
         int count = brandService.createBrand(brandBO);
-        if(count > 0) {
+        if (count > 0) {
             return CommonResult.success(count);
         }
         return CommonResult.failed();
@@ -74,8 +74,8 @@ public class BrandController {
     @ApiOperation(value = "根据品牌名称分页获取品牌列表")
     @GetMapping("/list")
     public CommonResult<CommonPage<Brand>> getList(@RequestParam(value = "keyword", required = false) String keyword,
-                                                      @RequestParam(value = "pageNum", defaultValue = "1") Integer pageNum,
-                                                      @RequestParam(value = "pageSize", defaultValue = "5") Integer pageSize) {
+                                                   @RequestParam(value = "pageNum", defaultValue = "1") Integer pageNum,
+                                                   @RequestParam(value = "pageSize", defaultValue = "5") Integer pageSize) {
         IPage<Brand> brandList = brandService.listBrand(keyword, pageNum, pageSize);
         return CommonResult.success(CommonPage.restPage(brandList));
     }
@@ -86,5 +86,16 @@ public class BrandController {
         return CommonResult.success(brandService.getById(id));
     }
 
+    @ApiOperation(value = "批量更新显示状态")
+    @PostMapping("/update/showStatus")
+    public CommonResult updateShowStatus(@RequestParam("ids") List<Long> ids,
+                                         @RequestParam("showStatus") Integer showStatus) {
+        boolean result = brandService.updateShowStatus(ids, showStatus);
+        if (result) {
+            return CommonResult.success(result);
+        } else {
+            return CommonResult.failed();
+        }
+    }
 
 }

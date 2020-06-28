@@ -23,7 +23,7 @@ public class MyMetaObjectHandler implements MetaObjectHandler {
     @Override
     public void updateFill(MetaObject metaObject) {
         Object val = getFieldValByName("updateTime", metaObject);
-        if(val == null){
+        if (val == null) {
             setFieldValByName("updateTime", LocalDateTime.now(), metaObject);
         }
 

@@ -26,9 +26,9 @@ public class FastdfsServiceImpl implements IFastdfsService {
     public String upload(MultipartFile file, String fileExtName) throws Exception {
 
         StorePath storePath = fastFileStorageClient.uploadFile(file.getInputStream(),
-                                                                file.getSize(),
-                                                                fileExtName,
-                                                                null);
+                file.getSize(),
+                fileExtName,
+                null);
         return storePath.getFullPath();
     }
 }

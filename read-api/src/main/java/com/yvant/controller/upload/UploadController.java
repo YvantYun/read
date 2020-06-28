@@ -48,7 +48,7 @@ public class UploadController {
                     return CommonResult.failed("图片格式不正确！");
                 }
 
-                path =  fileResource.getHost() + fastdfsService.upload(file, suffix);
+                path = fileResource.getHost() + fastdfsService.upload(file, suffix);
                 return CommonResult.success(path);
 
             } else {

@@ -44,7 +44,7 @@ public class RoleServiceImpl extends ServiceImpl<RoleMapper, Role> implements IR
     @Override
     public IPage<Role> getRoleList(String keyword, Integer pageNum, Integer pageSize) {
         QueryWrapper<Role> queryWrapper = new QueryWrapper<>();
-        if(!StringUtils.isEmpty(keyword)) {
+        if (!StringUtils.isEmpty(keyword)) {
             queryWrapper.like("name", keyword);
         }
         Page<Role> page = new Page<>(pageNum, pageSize);

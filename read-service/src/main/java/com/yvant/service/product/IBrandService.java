@@ -5,6 +5,8 @@ import com.baomidou.mybatisplus.extension.service.IService;
 import com.yvant.model.product.bo.BrandBO;
 import com.yvant.model.product.entity.Brand;
 
+import java.util.List;
+
 /**
  * 品牌表 Service接口
  *
@@ -27,4 +29,13 @@ public interface IBrandService extends IService<Brand> {
      * 分页查询品牌列表
      */
     IPage<Brand> listBrand(String keyword, Integer pageNum, Integer pageSize);
+
+    /**
+     * 批量更新显示信息
+     *
+     * @param ids
+     * @param showStatus
+     * @return
+     */
+    boolean updateShowStatus(List<Long> ids, Integer showStatus);
 }

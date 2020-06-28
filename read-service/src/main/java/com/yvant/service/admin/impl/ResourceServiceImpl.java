@@ -25,13 +25,13 @@ public class ResourceServiceImpl extends ServiceImpl<ResourceMapper, Resource> i
     public IPage<Resource> getResourceList(Long categoryId, String nameKeyword, String urlKeyword, Integer pageSize, Integer pageNum) {
         Page<Resource> page = new Page<>(pageNum, pageSize);
         QueryWrapper<Resource> queryWrapper = new QueryWrapper<>();
-        if(categoryId != null) {
-            queryWrapper.eq("category_id",categoryId);
+        if (categoryId != null) {
+            queryWrapper.eq("category_id", categoryId);
         }
-        if(StrUtil.isNotEmpty(nameKeyword)){
+        if (StrUtil.isNotEmpty(nameKeyword)) {
             queryWrapper.like("name", nameKeyword);
         }
-        if(StrUtil.isNotEmpty(urlKeyword)) {
+        if (StrUtil.isNotEmpty(urlKeyword)) {
             queryWrapper.like("url", urlKeyword);
         }
         return this.baseMapper.selectPage(page, queryWrapper);

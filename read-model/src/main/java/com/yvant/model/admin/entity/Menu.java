@@ -47,6 +47,12 @@ public class Menu extends BaseEntity<Long> {
      */
     private String name;
 
+    private String path;
+    private String component;
+    private String redirect;
+    private String activeMenu;
+    private Integer breadCrumb;
+
 
     /**
      * 前端图标

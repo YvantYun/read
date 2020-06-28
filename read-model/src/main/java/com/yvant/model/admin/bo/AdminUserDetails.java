@@ -17,6 +17,7 @@ import java.util.stream.Collectors;
 public class AdminUserDetails implements UserDetails {
     private Admin admin;
     private List<Resource> resourceList;
+
     public AdminUserDetails(Admin admin, List<Resource> resourceList) {
         this.admin = admin;
         this.resourceList = resourceList;
@@ -26,7 +27,7 @@ public class AdminUserDetails implements UserDetails {
     public Collection<? extends GrantedAuthority> getAuthorities() {
         //这个方法将返回此用户的所拥有的权限
         return resourceList.stream()
-                .map(resource -> new SimpleGrantedAuthority(resource.getId()+":"+resource.getName()))
+                .map(resource -> new SimpleGrantedAuthority(resource.getId() + ":" + resource.getName()))
                 .collect(Collectors.toList());
     }
 

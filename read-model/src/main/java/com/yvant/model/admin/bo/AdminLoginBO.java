@@ -38,6 +38,6 @@ public class AdminLoginBO {
 
     @ApiModelProperty(value = "备注")
     private String note;
-    
+
 
 }

@@ -16,7 +16,8 @@ public class CommonResult<T> {
     private String message;
     private T data;
 
-    protected CommonResult() {}
+    protected CommonResult() {
+    }
 
     protected CommonResult(int code, String message, T data) {
         this.code = code;
@@ -26,6 +27,7 @@ public class CommonResult<T> {
 
     /**
      * 成功返回结果
+     *
      * @param data 数据
      */
     public static <T> CommonResult<T> success(T data) {
@@ -35,8 +37,8 @@ public class CommonResult<T> {
     /**
      * 成功返回结果
      *
-     * @param data 获取的数据
-     * @param  message 提示信息
+     * @param data    获取的数据
+     * @param message 提示信息
      */
     public static <T> CommonResult<T> success(T data, String message) {
         return new CommonResult<T>(ResultCode.SUCCESS.getCode(), message, data);
@@ -44,6 +46,7 @@ public class CommonResult<T> {
 
     /**
      * 失败返回结果
+     *
      * @param resultCode 错误码
      */
     public static <T> CommonResult<T> failed(ResultCode resultCode) {
@@ -52,6 +55,7 @@ public class CommonResult<T> {
 
     /**
      * 失败返回结果
+     *
      * @param message 提示信息
      */
     public static <T> CommonResult<T> failed(String message) {
@@ -74,11 +78,13 @@ public class CommonResult<T> {
 
     /**
      * 参数验证失败返回结果
+     *
      * @param message 提示信息
      */
     public static <T> CommonResult<T> validateFailed(String message) {
         return new CommonResult<T>(ResultCode.VALIDATE_FAILED.getCode(), message, null);
     }
+
     /**
      * 未登录返回结果
      */

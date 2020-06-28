@@ -68,7 +68,7 @@ public class AdminServiceImpl extends ServiceImpl<AdminMapper, Admin> implements
         //密码需要客户端加密后传递
         try {
             UserDetails userDetails = loadUserByUsername(username);
-            if(!passwordEncoder.matches(password, userDetails.getPassword())) {
+            if (!passwordEncoder.matches(password, userDetails.getPassword())) {
                 throw new BadCredentialsException("密码不正确");
             }
             if (!userDetails.isEnabled()) {
@@ -79,7 +79,7 @@ public class AdminServiceImpl extends ServiceImpl<AdminMapper, Admin> implements
             token = jwtTokenUtil.generateToken(userDetails);
             // 插入登录记录
             insertLoginLog(username);
-        }catch (AuthenticationException e) {
+        } catch (AuthenticationException e) {
             log.warn("登录异常:{}", e.getMessage());
         }
         return token;
@@ -87,11 +87,12 @@ public class AdminServiceImpl extends ServiceImpl<AdminMapper, Admin> implements
 
     /**
      * 添加登录记录
+     *
      * @param username 用户名
      */
     private void insertLoginLog(String username) {
         Admin admin = getAdminByUsername(username);
-        if(admin == null)
+        if (admin == null)
             return;
         AdminLoginLog loginLog = new AdminLoginLog();
         loginLog.setAdminId(admin.getId());
@@ -106,7 +107,7 @@ public class AdminServiceImpl extends ServiceImpl<AdminMapper, Admin> implements
     @Override
     public UserDetails loadUserByUsername(String username) {
         Admin admin = getAdminByUsername(username);
-        if(admin != null) {
+        if (admin != null) {
             List<Resource> resourceList = getResourceList(admin.getId());
             return new AdminUserDetails(admin, resourceList);
         }
@@ -128,7 +129,7 @@ public class AdminServiceImpl extends ServiceImpl<AdminMapper, Admin> implements
     public List<Resource> getResourceList(Long adminId) {
         List<Resource> resourceList = adminRoleRelationMapper.getResourceList(adminId);
         // huTool中判断list不为空
-        if(CollUtil.isNotEmpty(resourceList)) {
+        if (CollUtil.isNotEmpty(resourceList)) {
             return resourceList;
         }
         return null;
@@ -138,7 +139,7 @@ public class AdminServiceImpl extends ServiceImpl<AdminMapper, Admin> implements
     public Admin register(AdminRegisterBO registerBO) {
         //查询是否有相同用户名的用户
         Admin selectAdmin = getAdminByUsername(registerBO.getUsername());
-        if(selectAdmin != null ) {
+        if (selectAdmin != null) {
             return null;
         }
         Admin admin = new Admin();
@@ -161,7 +162,7 @@ public class AdminServiceImpl extends ServiceImpl<AdminMapper, Admin> implements
     @Override
     public IPage<Admin> getAdminList(String keyword, Integer pageNum, Integer pageSize) {
         QueryWrapper<Admin> queryWrapper = new QueryWrapper<>();
-        if(!StringUtils.isEmpty(keyword)) {
+        if (!StringUtils.isEmpty(keyword)) {
             queryWrapper.like("username", keyword)
                     .or()
                     .like("nick_name", keyword);
@@ -180,14 +181,14 @@ public class AdminServiceImpl extends ServiceImpl<AdminMapper, Admin> implements
     public int updateAdmin(Long id, Admin admin) {
         admin.setId(id);
         Admin rawAdmin = this.baseMapper.selectById(id);
-        if(rawAdmin.getPassword().equals(admin.getPassword())) {
+        if (rawAdmin.getPassword().equals(admin.getPassword())) {
             // 密码相同则不改
             admin.setPassword(null);
-        }else {
+        } else {
             //与原加密密码不同的需要加密修改
-            if(StringUtils.isEmpty(admin.getPassword())) {
+            if (StringUtils.isEmpty(admin.getPassword())) {
                 admin.setPassword(null);
-            }else {
+            } else {
                 admin.setPassword(passwordEncoder.encode(admin.getPassword()));
             }
         }
@@ -202,7 +203,7 @@ public class AdminServiceImpl extends ServiceImpl<AdminMapper, Admin> implements
         updateWrapper.eq("admin_id", adminId);
         adminRoleRelationMapper.delete(updateWrapper);
         // 建立新的关系
-        if(CollUtil.isNotEmpty(roleIds)) {
+        if (CollUtil.isNotEmpty(roleIds)) {
             List<AdminRoleRelation> adminRoleList = new ArrayList<>();
             roleIds.forEach(roleId -> {
                 AdminRoleRelation adminRole = new AdminRoleRelation();

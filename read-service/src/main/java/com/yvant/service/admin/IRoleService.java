@@ -28,6 +28,7 @@ public interface IRoleService extends IService<Role> {
 
     /**
      * 更新角色信息
+     *
      * @param id
      * @param role
      * @return
@@ -36,6 +37,7 @@ public interface IRoleService extends IService<Role> {
 
     /**
      * 批量删除角色信息
+     *
      * @param ids
      * @return
      */
@@ -43,6 +45,7 @@ public interface IRoleService extends IService<Role> {
 
     /**
      * 根据角色id 获取所有菜单
+     *
      * @param roleId
      * @return
      */
@@ -50,6 +53,7 @@ public interface IRoleService extends IService<Role> {
 
     /**
      * 给角色分配菜单
+     *
      * @param roleId
      * @param menuIds
      * @return
@@ -58,6 +62,7 @@ public interface IRoleService extends IService<Role> {
 
     /**
      * 根据角色获取资源列表
+     *
      * @param roleId
      * @return
      */
@@ -65,6 +70,7 @@ public interface IRoleService extends IService<Role> {
 
     /**
      * 给角色分资源
+     *
      * @param roleId
      * @param resourceIds
      * @return

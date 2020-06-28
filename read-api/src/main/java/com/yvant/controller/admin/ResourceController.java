@@ -42,7 +42,7 @@ public class ResourceController {
                                                    @RequestParam(value = "pageSize", defaultValue = "5") Integer pageSize,
                                                    @RequestParam(value = "pageNum", defaultValue = "1") Integer pageNum) {
         IPage<Resource> resourceList = resourceService.getResourceList(categoryId, nameKeyword,
-                                                                        urlKeyword, pageSize, pageNum);
+                urlKeyword, pageSize, pageNum);
         return CommonResult.success(CommonPage.restPage(resourceList));
     }
 

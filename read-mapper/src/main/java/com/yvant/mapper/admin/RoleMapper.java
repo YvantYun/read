@@ -12,13 +12,15 @@ public interface RoleMapper extends BaseMapper<Role> {
 
     /**
      * 根据adminId获取菜单列表
+     *
      * @param adminId
      * @return
      */
-    List<Menu> getMenuListByAdminId(@Param("adminId")Long adminId);
+    List<Menu> getMenuListByAdminId(@Param("adminId") Long adminId);
 
     /**
      * 根据roleId获取菜单列表
+     *
      * @param roleId
      * @return
      */
@@ -26,6 +28,7 @@ public interface RoleMapper extends BaseMapper<Role> {
 
     /**
      * 根据roleId获取后台资源列表
+     *
      * @param roleId
      * @return
      */

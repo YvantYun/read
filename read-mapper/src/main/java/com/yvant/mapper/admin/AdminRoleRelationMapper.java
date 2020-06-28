@@ -18,6 +18,7 @@ public interface AdminRoleRelationMapper extends BaseMapper<AdminRoleRelation> {
 
     /**
      * 获取 角色列表
+     *
      * @param adminId
      * @return
      */
@@ -25,6 +26,7 @@ public interface AdminRoleRelationMapper extends BaseMapper<AdminRoleRelation> {
 
     /**
      * 批量插入admin和角色关系
+     *
      * @param adminRoleList
      * @return
      */

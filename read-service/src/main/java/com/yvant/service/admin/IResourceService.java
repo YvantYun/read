@@ -16,7 +16,8 @@ public interface IResourceService extends IService<Resource> {
 
     /**
      * 获取后台资源列表 —— 分页 + 模糊查询
-     * @param categoryId 资源分类id
+     *
+     * @param categoryId  资源分类id
      * @param nameKeyword
      * @param urlKeyword
      * @param pageSize

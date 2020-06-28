@@ -51,7 +51,7 @@ public class RoleController {
     @PostMapping("/create")
     public CommonResult create(@RequestBody Role role) {
         boolean save = roleService.save(role);
-        if(save) {
+        if (save) {
             return CommonResult.success("添加成功");
         }
         return CommonResult.failed("添加失败");
@@ -79,12 +79,12 @@ public class RoleController {
 
     @ApiOperation("更新菜单状态")
     @PostMapping("updateStatus/{id}")
-    public CommonResult updateStatus(@PathVariable Long id, @RequestParam(value = "status") Integer status){
+    public CommonResult updateStatus(@PathVariable Long id, @RequestParam(value = "status") Integer status) {
         Role role = new Role();
         role.setId(id);
         role.setStatus(status);
         boolean result = roleService.updateById(role);
-        if(result) {
+        if (result) {
             return CommonResult.success(result);
         }
         return CommonResult.failed();

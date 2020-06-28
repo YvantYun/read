@@ -45,7 +45,7 @@ public class MenuController {
     public CommonResult create(@RequestBody Menu menu) {
 
         int count = this.menuService.insertMenu(menu);
-        if(count > 0) {
+        if (count > 0) {
             return CommonResult.success(count);
         }
         return CommonResult.failed();
@@ -62,7 +62,7 @@ public class MenuController {
     @PostMapping("/update/{id}")
     public CommonResult update(@PathVariable Long id, @RequestBody Menu menu) {
         int count = menuService.updateMenu(id, menu);
-        if(count > 0) {
+        if (count > 0) {
             return CommonResult.success(count);
         }
         return CommonResult.failed();
@@ -72,7 +72,7 @@ public class MenuController {
     @PostMapping("/delete/{id}")
     public CommonResult delete(@PathVariable Long id) {
         boolean result = menuService.removeById(id);
-        if(result) {
+        if (result) {
             return CommonResult.success(result);
         }
         return CommonResult.failed();
@@ -89,7 +89,7 @@ public class MenuController {
     @PostMapping("/updateHidden/{id}")
     public CommonResult updateHidden(@PathVariable Long id, @RequestParam("hidden") Integer hidden) {
         int count = menuService.updateHidden(id, hidden);
-        if(count > 0 ) {
+        if (count > 0) {
             return CommonResult.success(count);
         }
         return CommonResult.failed();

@@ -23,6 +23,7 @@ public interface IAdminService extends IService<Admin> {
 
     /**
      * 登录功能
+     *
      * @param username 用户名
      * @param password 密码
      * @return 生成的JWT的token
@@ -51,6 +52,7 @@ public interface IAdminService extends IService<Admin> {
 
     /**
      * 刷新token
+     *
      * @param token 旧token
      * @return 新token
      */
@@ -68,6 +70,7 @@ public interface IAdminService extends IService<Admin> {
 
     /**
      * 根据管理员id获取角色列表
+     *
      * @param adminId
      * @return
      */
@@ -75,6 +78,7 @@ public interface IAdminService extends IService<Admin> {
 
     /**
      * 更新指定用户信息
+     *
      * @param id
      * @param admin
      * @return

@@ -33,9 +33,9 @@ public class ResourceCategoryController {
     @GetMapping("/listAll")
     public CommonResult list() {
         List<ResourceCategory> sortList = resourceCategoryService.list();
-                //.stream()
-                //.sorted(Comparator.comparing(ResourceCategory::getSort))
-                //.collect(Collectors.toList());
+        //.stream()
+        //.sorted(Comparator.comparing(ResourceCategory::getSort))
+        //.collect(Collectors.toList());
         return CommonResult.success(sortList);
     }
 
@@ -43,7 +43,7 @@ public class ResourceCategoryController {
     @PostMapping("/create")
     public CommonResult create(@RequestBody ResourceCategory resourceCategory) {
         boolean result = resourceCategoryService.save(resourceCategory);
-        if(result) {
+        if (result) {
             return CommonResult.success(result);
         }
         return CommonResult.failed();
@@ -72,8 +72,6 @@ public class ResourceCategoryController {
             return CommonResult.failed();
         }
     }
-
-
 
 
 }

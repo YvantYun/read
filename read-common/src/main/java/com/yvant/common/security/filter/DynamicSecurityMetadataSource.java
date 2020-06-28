@@ -34,8 +34,7 @@ public class DynamicSecurityMetadataSource implements FilterInvocationSecurityMe
     @Override
     public Collection<ConfigAttribute> getAttributes(Object o) throws IllegalArgumentException {
         if (configAttributeMap == null) this.loadDataSource();
-        List<ConfigAttribute>  configAttributes = new ArrayList<>();
-        configAttributes.add(null);
+        List<ConfigAttribute> configAttributes = new ArrayList<>();
         //获取当前访问的路径
         String url = ((FilterInvocation) o).getRequestUrl();
         String path = URLUtil.getPath(url);
