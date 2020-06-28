@@ -125,7 +125,6 @@ public class AdminController {
 
     @ApiOperation("根据用户名或姓名分页获取用户列表")
     @GetMapping("/list")
-    @PreAuthorize("hasAuthority('1:后台用户管理')")
     public CommonResult<CommonPage<Admin>> list(@RequestParam(value = "keyword", required = false) String keyword,
                                                 @RequestParam(value = "pageSize", defaultValue = "5") Integer pageSize,
                                                 @RequestParam(value = "pageNum", defaultValue = "1") Integer pageNum) {
